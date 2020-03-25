@@ -1,0 +1,38 @@
+<%= render 'books/side', books: @books %>
+      <div class="col-xs-9">
+          <!-- book一覧（カレントユーザが投稿したもののみ表示） -->
+          <h2>Books</h2>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Option</th>
+    </tr>
+  </thead>
+  <!-- user_booksにはカレントユーザの投稿したbookが入っている -->
+  <% @user_books.each do |book| %>
+  <!-- bookとひもついているユーザーの画像データを表示させる -->
+    <tbody>
+      <tr>
+          <td><%= link_to user_path(@user) do %>
+
+                <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg", size:'40x40' %>
+              <% end %></td>
+        <!-- タイトルにリンク付けする -->
+          <td><%= link_to book_path(book.id) do %>
+                  <%= book.title %>
+              <% end %></td>
+          <!-- bodyを表示 -->
+          <td><%= book.body %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+<!-- book一覧ここまで -->
+      </div>
+      </div>
+      </div>
+  </body>
+</html>

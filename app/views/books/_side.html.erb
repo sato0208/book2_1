@@ -1,0 +1,24 @@
+	<div class="container">
+  	<div class="row">
+    <div class="col-xs-3">
+      <!-- ログインしていたらサイドバーを表示させる -->
+	<h1>User Info</h1>
+	<%= attachment_image_tag @user_profile, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg",size:'100x100'%>
+	<table class="table table-condensed">
+	<tr>
+	<string><td>name</td></string>
+	<string><td><%= @user_profile.name %></td></string></tr>
+	<tr>
+	<string><td>introduction</td></string>
+	<string><td><%= @user_profile.introduction %></td></string></tr>
+	<td><%= link_to "",edit_user_path(@user_profile.id), class: "btn btn-default  btn-block glyphicon glyphicon-wrench" %></td>
+	</table>
+	<%= form_for @book do |f| %>
+	<h2>New book</h2>
+		<%= f.label :title%>
+		<%= f.text_field :title,placeholder:"タイトル" %>
+		<%= f.label :body %>
+		<%= f.text_area :body,placeholder:"内容"%>
+		<%= f.submit"送信" %>
+	<% end %>
+</div>
