@@ -51,6 +51,8 @@ end
     @books = Book.find(params[:id])
     @user = Book.find(params[:id]).user
     @user_profile = current_user
+    # コメントを表示する
+    @post_comment = PostComment.new
   end
 
   def edit

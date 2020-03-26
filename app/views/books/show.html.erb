@@ -40,16 +40,39 @@
 		<td><%= @books.body %></td>
 
 
+
+
+		<!-- コメントここから -->
+		<td><a href="#comments"><%= @books.post_comments.count %></a></td>
+		<td><%= @books.post_comments.count %>件コメント</td>
+
+		<td><% @books.post_comments.each do |post_comment| %></td>
+		<td><%= post_comment.user.name %></td>
+		<td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+		<td><%= post_comment.comment %></td>
+		<% end %>
+
+		<div class="post">
+			<%= form_for [@books, @post_comment] do |f| %>
+			<%= f.text_area :comment, rows:'5',placeholder:"コメントここに"%>
+			<%= f.submit "送信する",class:"btn btn-success" %>
+			<% end %>
+		</div>
+		<!-- コメントここまで -->
+
+
+
+
 			<!-- ログインしているユーザーの場合edit,destoryを表示させる -->
 		<% if @books.user == current_user %>
 
 	<div class="edit_destroy">
 		<td><%= link_to "Edit",edit_book_path(@books.id), class:"btn btn-success"%></td>
 		<td><%= link_to "Destroy", book_path(@books.id),class:"btn btn-danger", method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
-	</tr>
 	</div>
 		<% end %>
 
+			</tr>
 			</tbody>
 		</table>
 	</div>
