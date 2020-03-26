@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+1p');
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -24,8 +24,6 @@
 }
 
 .error-massage {
-    padding: 15px;
-    padding-bottom: 15px;
     margin-bottom: 20px;
     border: 1px solid transparent;
     border-radius: 4px;
@@ -47,12 +45,13 @@
 }
 html {
     font-size: 10px;
-    font-family: sans-serif;
+}
+
+.label {
+    font-family: 'M PLUS 1p', sans-serif;
 }
 
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
     line-height: 1.42857143;
     display: block;
     margin-top: 60px;
@@ -146,10 +145,7 @@ text-decoration:none;
 h1, .h1, h2, .h2, h3, .h3 {
     margin-top: 20px;
     margin-bottom: 10px;
-    }
-
-h1, h2, h3, h4 {
-    font-family: inherit;
+    font-family: 'M PLUS 1p', sans-serif;
     font-weight: 500;
     line-height: 1.1;
     color: inherit;
@@ -158,10 +154,12 @@ h1, h2, h3, h4 {
 
 li {
     color: #9d9d9d;
+    font-family: 'M PLUS 1p', sans-serif;
     }
 
 .container {
     margin-right: auto;
+    font-family: 'M PLUS 1p', sans-serif;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
@@ -200,8 +198,9 @@ li {
 .table>thead>tr>th, .table>thead>tr>td, .table>tbody>tr>th, .table>tbody>tr>td {
     padding: 8px;
     margin: 33px;
-    font-family: verdana, arial, helvetica, sans-serif;
     font-size: 13px;
+    font-family: 'M PLUS 1p', sans-serif;
+
     border-top: 1px solid #ddd;
 
     }

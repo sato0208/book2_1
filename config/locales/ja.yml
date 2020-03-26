@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    attributes:
+      book:
+        title: 書籍名
+        body: 内容
+      user:
+        name: 名前
+        introduction: 自己紹介
+        image: プロフィール画像
