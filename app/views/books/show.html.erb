@@ -21,6 +21,8 @@
 				<th></th>
 				<th>Title</th>
 				<th>option</th>
+				<th></th>
+				<th></th>
 			</thead>
 			<tbody>
 <!-- bookとひもづくユーザーの画像データを表示させる。book.user -->
@@ -43,8 +45,7 @@
 
 	<div class="edit_destroy">
 		<td><%= link_to "Edit",edit_book_path(@books.id), class:"btn btn-success"%></td>
-		<td><%= link_to "Destroy", book_path(@books.id),class:"btn btn-danger", method: :delete, data: {confirm: '本当に削除しますか？'} %>
-		</td>
+		<td><%= link_to "Destroy", book_path(@books.id),class:"btn btn-danger", method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
 	</tr>
 	</div>
 		<% end %>

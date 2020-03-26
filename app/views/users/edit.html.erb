@@ -1,4 +1,11 @@
 <!-- ここからユーザ編集画面 -->
+<div class="container">
+    <% if @user.errors.any? %>
+      <h4><%= @user.errors.count %> errors prohibited this obj from being saved:</h4>
+      <% @user.errors.full_messages.each do |message| %>
+      <%= message %>
+      <% end %>
+      <% end %>
 <section>
     <h2 class="form-header-title">User info</h2>
     <div class="form-body">
@@ -27,4 +34,5 @@
     <% end %>
     </div>
 </section>
+</div>
   <!-- ここまでユーザー編集画面 -->

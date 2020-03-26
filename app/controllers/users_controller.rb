@@ -1,10 +1,22 @@
 class UsersController < ApplicationController
+	  # ※カレントユーザー以外は直接リンクを入力しても編集ページにいけないようにする
+	def ensure_correct_user
+	  @user = User.find(params[:id])
+	  # ※カレントユーザーIDがbook.user_idと同じでない場合はbooks_pathへ飛ばす
+	  @user_profire = current_user
+	  if current_user.id != @user.id
+	    redirect_to user_path(@user_profire)
+	  end
+	end
+
 	def new
 		@user = User.new
 	end
 
 	def index
 		@users = User.all
+		@user_profile = current_user
+		@book = Book.new
 	end
 
 	def show
@@ -17,8 +29,11 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
-		@user.update(user_params)
-		redirect_to user_path
+		if @user.update(user_params)
+		   redirect_to user_path(@user.id)
+		else
+			render :edit
+		end
 	end
 
 	def edit
@@ -26,9 +41,8 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		@user = User.find(params[:id])
-		@user.destroy
-		redirect_to books_path
+		reset_session
+  		redirect_to root_path, alert: "Signed out successfully."
 	end
 
 	private

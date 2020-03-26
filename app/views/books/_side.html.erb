@@ -1,24 +1,45 @@
-	<div class="container">
+
+<div class="container">
+
+
+		<% if @book.errors.any? %>
+		<div class="error-massage">
+		  <h4><%= @book.errors.count %> errors prohibited this obj from being saved:</h4>
+	    <% @book.errors.full_messages.each do |message| %>
+		  <tr><li><%= message %></li></tr>
+	    <% end %>
+		</div>
+	    <% end %>
+
   	<div class="row">
     <div class="col-xs-3">
       <!-- ログインしていたらサイドバーを表示させる -->
+      <% if flash.now[:notice] %>
+		<p><%= flash[:notice] %></p>
+	<% end %>
+
 	<h1>User Info</h1>
 	<%= attachment_image_tag @user_profile, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg",size:'100x100'%>
 	<table class="table table-condensed">
-	<tr>
-	<string><td>name</td></string>
-	<string><td><%= @user_profile.name %></td></string></tr>
-	<tr>
-	<string><td>introduction</td></string>
-	<string><td><%= @user_profile.introduction %></td></string></tr>
-	<td><%= link_to "",edit_user_path(@user_profile.id), class: "btn btn-default  btn-block glyphicon glyphicon-wrench" %></td>
+		<tr>
+			<th>name</th>
+			<td><%= @user_profile.name %></td>
+		</tr>
+		<tr>
+			<th>introduction</th>
+			<td><%= @user_profile.introduction %></td>
+		</tr>
 	</table>
+	<p><%= link_to "",edit_user_path(@user_profile.id), class: "btn btn-funky-moon btn-fab glyphicon glyphicon-wrench" %></p>
 	<%= form_for @book do |f| %>
 	<h2>New book</h2>
-		<%= f.label :title%>
-		<%= f.text_field :title,placeholder:"タイトル" %>
-		<%= f.label :body %>
-		<%= f.text_area :body,placeholder:"内容"%>
-		<%= f.submit"送信" %>
+	 <div class="profile">
+		<p><%= f.label :title%></p>
+		<p><%= f.text_field :title,placeholder:"タイトル" %></p>
+		<p><%= f.label :body %></p>
+		<p><%= f.text_area :body,placeholder:"内容"%></p>
+
+		<p><%= f.submit"create", class: "btn btn-funky-moon btn-fab fas fa-pastafarianism" %></p>
 	<% end %>
+	</div>
 </div>

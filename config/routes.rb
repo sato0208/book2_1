@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  root 'books#top'
+
+   get 'books/about' => 'books#about'
 
   devise_for :users
-  root 'books#index'
+  resources :users, only:[:index, :edit, :show, :update]
 
-  get 'books/top' => 'books/top'
-  get 'books/about' => 'books/about'
+  resources :books, only:[:new, :destroy, :index, :edit, :show, :create, :update]
+  get '/books' => 'books#index'
+  post '/books' => 'books#create'
 
-  resources :books, only:[:new, :index, :edit, :show, :create, :update, :destroy]
-  resources :users, only:[:new, :index, :edit, :show, :create, :update]
+
 end
