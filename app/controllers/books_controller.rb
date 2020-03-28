@@ -18,7 +18,7 @@ end
   end
   # 画像の投稿を表示させる
   def new
-    @book = Book.new
+    @new_book = Book.new
   end
 
   def update
@@ -28,27 +28,28 @@ end
   end
 
   def create
-    @book = Book.new(book_params)
+    puts params[:title]
+    @new_book = Book.new(book_params)
     @books = Book.all
     @user_profile = current_user
     # 今ログインしているユーザのIDをuser_idへ代入する。この項目を入力しないとviewへ送れない
-    @book.user_id = current_user.id
-    if @book.save
-      redirect_to books_path(@book.id), notice:'You have updated book successfully.'
+    @new_book.user_id = current_user.id
+    if @new_book.save
+      redirect_to books_path(@new_book.id), notice:'You have updated book successfully.'
     else
       render :index
     end
   end
 
   def index
-    @book = Book.new
+    @new_book = Book.new
     @books = Book.all
     @user_profile = current_user
   end
 
   def show
-    @book = Book.new
-    @books = Book.find(params[:id])
+    @new_book = Book.new
+    @book = Book.find(params[:id])
     @user = Book.find(params[:id]).user
     @user_profile = current_user
     # コメントを表示する

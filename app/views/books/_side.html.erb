@@ -1,46 +1,45 @@
 <body>
-<div class="container">
+	<div class="container">
 
-
-		<% if @book.errors.any? %>
+<!-- ここからエラーメッセージ -->
+	<% if @new_book.errors.any? %>
 		<div class="error-massage fas fa-skull-crossbones">
-		  <h3><%= @book.errors.count %>件のエラーがあります( ；∀；)<i class="fas fa-kiwi-bird"></i></h3>
-	    <% @book.errors.full_messages.each do |message| %>
+		  <h3><%= @new_book.errors.count %>件のエラーがあります<i class="fas fa-kiwi-bird"></i></h3>
+	    <% @new_book.errors.full_messages.each do |message| %>
 		  <tr><li><%= message %></li></tr>
 	    <% end %>
-		</div>
-	    <% end %>
-
+	</div>
+    <% end %>
+<!-- ここまでエラーメッセージ -->
   	<div class="row">
     <div class="col-xs-3">
-      <!-- ログインしていたらサイドバーを表示させる -->
-      <% if flash.now[:notice] %>
-		<p><%= flash[:notice] %></p>
-	<% end %>
-
+	    <% if flash.now[:notice] %>
+		　　<p><%= flash[:notice] %></p>
+		<% end %>
+<!-- ここからサイドバー -->
 	<h2>プロフィール</h2>
-	<%= attachment_image_tag @user_profile, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg",size:'100x100'%>
-	<table class="table table-condensed">
-		<tr>
-			<th>名前</th>
-			<td><%= @user_profile.name %></td>
-		</tr>
-		<tr>
-			<th>自己紹介</th>
-			<td><%= @user_profile.introduction %></td>
-		</tr>
-	</table>
-	<p><%= link_to "",edit_user_path(@user_profile.id), class: "btn btn-funky-moon btn-fab glyphicon glyphicon-wrench" %></p>
-	<%= form_for @book do |f| %>
-	<h2>新規投稿</h2>
-	 <div class="profile">
-		<p><%= f.label :title%></p>
-		<p><%= f.text_field :title %></p>
-		<p><%= f.label :body %></p>
-		<p><%= f.text_area :body %></p>
+		<%= attachment_image_tag @user_profile, :profile_image, :fill, 100, 100, format: 'jpeg', class: "pull-left profile-img", fallback: "no_image.jpg",size:'100x100'%>
+		<table class="table table-condensed">
+			<tr>
+				<th>名前</th>
+				<td><%= @user_profile.name %></td>
+			</tr>
+			<tr>
+				<th>自己紹介</th>
+				<td><%= @user_profile.introduction %></td>
+			</tr>
+		</table>
+		<p><%= link_to "",edit_user_path(@user_profile.id), class: "btn btn-funky-moon btn-fab glyphicon glyphicon-wrench" %></p>
+	<%= form_for @new_book do |f| %>
+		<h2>新規投稿</h2>
+		 <div class="profile">
+			<p><%= f.label :title %></p>
+			<p><%= f.text_field :title, rows:'1' %></p>
+			<p><%= f.label :body %></p>
+			<p><%= f.text_area :body, rows:'3' %></p>
 
-		<p><%= f.submit"create", class: "btn btn-funky-moon btn-fab fas fa-pastafarianism" %></p>
+			<p><%= f.submit"create", class: "btn btn-funky-moon btn-fab fas fa-pastafarianism" %></p>
+		</div>
 	<% end %>
 	</div>
-</div>
 </body>

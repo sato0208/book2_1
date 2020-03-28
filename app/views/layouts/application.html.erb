@@ -4,21 +4,29 @@
 <head>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+<!-- FontAwesomeアイコンを使用するための記述。スタイルシートの上に書くこと -->
+    <script src="https://kit.fontawesome.com/2b9bb87bcc.js" crossorigin="anonymous"></script>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <% if flash.now[:notice] %>
+    <p><% flash[:notice] %></p>
+    <% end %>
 </head>
 
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <nav class="nav navbar-nav navbar-left">
-      <span class="fas fa-pastafarianism">Bookers</span>
+      <span>Bookers</span>
     </nav>
 <!-- ユーザーがサインインしている場合 -->
       <% if user_signed_in? %>
-          <ul class="navbar-text navbar-right">
+
+<!-- ハンバーガーメニューを作る -->
+          <ul class="navbar-right">
             <li>
-              <%= link_to_unless_current " Home", user_path(current_user.id),class:"glyphicon glyphicon-home"%>
+              <%= link_to_unless_current " Home", user_path(current_user.id),class:"glyphicon glyphicon-home animated-hover"%>
             </li>
             <li>
               <%= link_to_unless_current " Users", users_path,class:"glyphicon glyphicon-user" %>
@@ -32,7 +40,7 @@
             </ul>
           <!-- ユーザーがサインインしていない場合 -->
       <% else %>
-          <ul class="navbar-text navbar-right">
+          <ul class="navbar-right">
             <li>
               <%= link_to_unless_current " Home", root_path,class:"glyphicon glyphicon-home" %>
             </li>

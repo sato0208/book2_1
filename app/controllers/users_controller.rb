@@ -16,14 +16,14 @@ class UsersController < ApplicationController
 	def index
 		@users = User.all
 		@user_profile = current_user
-		@book = Book.new
+		@new_book = Book.new
 	end
 
 	def show
 	  @user = User.find(params[:id])
 	  # Userテーブルからユーザデータを取り出してそれに紐づく内容をbooksとして表示する
 	  @user_books = User.find(params[:id]).books
-	  @book = Book.new
+	  @new_book = Book.new
 	  @user_profile = current_user
 	end
 

@@ -1,7 +1,7 @@
 <!-- ここからユーザ編集画面 -->
 <div class="container">
     <% if @user.errors.any? %>
-      <h4><%= @user.errors.count %> errors prohibited this obj from being saved:</h4>
+      <h4><%= @user.errors.count %> 件のエラーがあります｡ﾟ(ﾟ´ω`ﾟ)ﾟ｡</h4>
       <% @user.errors.full_messages.each do |message| %>
       <%= message %>
       <% end %>
