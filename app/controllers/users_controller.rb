@@ -9,6 +9,19 @@ class UsersController < ApplicationController
 	  end
 	end
 
+	# 検索用
+	  def search
+	  	@new_book = Book.new
+	  	@user_profile = current_user
+	  	@user_books = User.find(params[:id]).books
+	    if params[:name].present?
+	      @search_users = User.where(['name LIKE ?', "%#{params[:name]}%"])
+	    else
+	      @search_users = User.none
+	    end
+	  end
+	# 検索用ここまで
+
 	def new
 		@user = User.new
 	end

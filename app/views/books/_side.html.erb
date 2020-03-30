@@ -3,8 +3,8 @@
 
 <!-- ここからエラーメッセージ -->
 	<% if @new_book.errors.any? %>
-		<div class="error-massage fas fa-skull-crossbones">
-		  <h3><%= @new_book.errors.count %>件のエラーがあります<i class="fas fa-kiwi-bird"></i></h3>
+	<div class="error-massage">
+		  <h3><i class="fas fa-kiwi-bird"></i><%= @new_book.errors.count %>件のエラーがあります<i class="fas fa-kiwi-bird"></i></h3>
 	    <% @new_book.errors.full_messages.each do |message| %>
 		  <tr><li><%= message %></li></tr>
 	    <% end %>

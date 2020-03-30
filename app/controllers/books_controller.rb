@@ -11,6 +11,18 @@ def ensure_correct_user
   end
 end
 
+  # 検索用
+    def search
+      @new_book = Book.new
+      @user_profile = current_user
+      if params[:name].present?
+        @search_books = Book.where(['title LIKE ?', "%#{params[:title]}%"])
+      else
+        @search_books = Book.none
+      end
+    end
+  # 検索用ここまで
+
   def top
   end
 
@@ -45,6 +57,11 @@ end
     @new_book = Book.new
     @books = Book.all
     @user_profile = current_user
+      if params[:title].present?
+        @search_books = Book.where(['title LIKE ?', "%#{params[:title]}%"])
+      else
+        @search_books = Book.none
+      end
   end
 
   def show
@@ -53,7 +70,7 @@ end
     @user = Book.find(params[:id]).user
     @user_profile = current_user
     # コメントを表示する
-    @post_comment = PostComment.new
+    @comment = PostComment.new
   end
 
   def edit

@@ -1,6 +1,17 @@
 <%= render 'books/side'%>
 	<div class="col-xs-9">
 <h2>Users</h2>
+
+<!-- 検索フォームここから -->
+<p>検索</p>
+<%= form_with url: search_users_path, method: :get, local: true do |f| %>
+	<%= f.text_field :name %>
+	<%= f.submit :search %>
+<% end %>
+
+<!-- 検索フォームここまで -->
+
+
 <table class="table table-hover">
 	<thead>
 		<tr>
